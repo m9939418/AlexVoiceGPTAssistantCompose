@@ -1,4 +1,4 @@
-# 🎙️ Alex Voice GPT Assistant (Compose + OpenAI Chat API)
+# Alex Voice GPT Assistant (Compose + OpenAI Chat API)
 
 一個使用 **Kotlin + Jetpack Compose + Hilt + OpenAI Chat API (gpt-4o-mini-audio-preview)** 實作的「語音助理 Demo App」。
 
@@ -31,7 +31,7 @@
 3. 權限允許後，呼叫 `Speech2TextManager.startListening()` 開始錄音。
 4. 系統透過 `SpeechRecognizer` 回傳 STT 事件（Ready / Final / Error 等）。
 5. `VoiceViewModel` 監聽這些事件，當收到 `Final(text)` 時：
-    - 在畫面上新增一則 User 聊天泡泡。:contentReference[oaicite:7]{index=7}
+    - 在畫面上新增一則 User 聊天泡泡。
     - 將 user 訊息加入 `messagesHistory`，並呼叫 OpenAI API。
 6. OpenAI 回應後，mapper 將 `ChatDto` 轉成 Domain `Chat`：
     - 解析 `audio.transcript` → 顯示在 UI。
