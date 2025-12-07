@@ -11,6 +11,6 @@ import kotlinx.serialization.Serializable
 data class ChatRequest(
     val model: String = "gpt-4o-mini-audio-preview",
     val modalities: List<String> = listOf("text", "audio"),
-    val audio: AudioRequest,
+    val audio: AudioRequest = AudioRequest(),
     val messages: List<MessageRequest>
 )
