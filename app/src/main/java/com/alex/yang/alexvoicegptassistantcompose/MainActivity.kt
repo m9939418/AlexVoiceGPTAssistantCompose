@@ -4,13 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.runtime.getValue
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.alex.yang.alexvoicegptassistantcompose.feature.voice.presentation.VoiceScreen
+import com.alex.yang.alexvoicegptassistantcompose.feature.voice.presentation.VoiceViewModel
 import com.alex.yang.alexvoicegptassistantcompose.ui.theme.AlexVoiceGPTAssistantComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,29 +19,14 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AlexVoiceGPTAssistantComposeTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                val viewModel = hiltViewModel<VoiceViewModel>()
+                val state by viewModel.uiState.collectAsStateWithLifecycle()
+
+                VoiceScreen(
+                    state = state,
+                    onMicClick = viewModel::onMicClick,
+                )
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    AlexVoiceGPTAssistantComposeTheme {
-        Greeting("Android")
     }
 }
