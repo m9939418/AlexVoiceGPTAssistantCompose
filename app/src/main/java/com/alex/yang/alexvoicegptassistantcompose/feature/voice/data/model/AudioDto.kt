@@ -10,5 +10,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class AudioDto(
     val id: String?,
-    val data: String?
+    val data: String?,
+    val transcript: String?
 )
