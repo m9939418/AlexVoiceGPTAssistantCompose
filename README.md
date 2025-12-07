@@ -18,7 +18,7 @@
 
 |                    |
 |--------------------|
-| ![](docs/demo.mp4) |
+| [🎬 Watch Demo](docs/demo.mp4) |
 
 ---
 
