@@ -1,12 +1,14 @@
 package com.alex.yang.alexvoicegptassistantcompose.feature.voice.presentation.di
 
-import com.alex.yang.alexvoicegptassistantcompose.feature.voice.data.repository.VoiceRepositoryImpl
-import com.alex.yang.alexvoicegptassistantcompose.feature.voice.domain.repository.VoiceRepository
-import dagger.Binds
+import android.content.Context
+import com.alex.yang.alexvoicegptassistantcompose.core.audio.AudioPlayer
+import com.alex.yang.alexvoicegptassistantcompose.core.stt.Speech2TextManager
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import jakarta.inject.Singleton
 
 /**
  * Created by AlexYang on 2025/12/7.
@@ -15,8 +17,14 @@ import javax.inject.Singleton
  */
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class VoiceModule {
-    @Binds
+object VoiceModule {
+    @Provides
     @Singleton
-    abstract fun bindVoiceRepository(impl: VoiceRepositoryImpl): VoiceRepository
+    fun provideSpeech2TextManager(@ApplicationContext context: Context) =
+        Speech2TextManager(context)
+
+    @Provides
+    @Singleton
+    fun provideAudioPlayer(@ApplicationContext context: Context) =
+        AudioPlayer(context)
 }
